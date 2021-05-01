@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {
     Dimensions,
     Image,
+    ImageSourcePropType,
     ScrollView,
     StyleSheet,
     Text,
@@ -10,13 +11,22 @@ import {
 import ActionSheet from 'react-native-actions-sheet';
 import color_pallete from '../config/color_pallete';
 import sizes from '../config/sizes';
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 const {height} = Dimensions.get('screen');
 
 interface Props {
     actionSheetRef: React.RefObject<ActionSheet>;
 }
 
-const requests = [
+interface Request {
+    image: ImageSourcePropType;
+    name: string;
+    email: string;
+}
+
+const requests: Request[] = [
     {
         image: require('../assets/img1.jpg'),
         name: 'Pedro Augusto',
@@ -60,6 +70,22 @@ const requests = [
 ];
 
 const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
+    //if the user refuse to accept the request remove it from the list
+
+    const [requestsList, setRequestsList] = useState<Request[]>(requests);
+    const removeFromList = useCallback(
+        (selected_email: string) => {
+            const requestIndex = requestsList.findIndex(
+                ({email}) => selected_email === email,
+            );
+            if (requestIndex !== -1) {
+                requestsList.splice(requestIndex, 1);
+                setRequestsList(requestsList);
+            }
+        },
+        [requestsList],
+    );
+
     return (
         <ActionSheet
             ref={actionSheetRef}
@@ -70,7 +96,7 @@ const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
                     height: height / 2,
                 }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                    {requests.map(({image, name, email}, index) => {
+                    {requestsList.map(({image, name, email}, index) => {
                         return (
                             <View key={index} style={styles.requestCard}>
                                 <Image
@@ -88,6 +114,14 @@ const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
                                         style={styles.requestEmailText}>
                                         {email}
                                     </Text>
+                                </View>
+                                <View style={styles.actionsContainer}>
+                                    <MaterialCommunityIcons
+                                        name="plus-circle-outline"
+                                        size={32}
+                                        color="green"
+                                        onPress={() => removeFromList(email)}
+                                    />
                                 </View>
                             </View>
                         );
@@ -133,6 +167,11 @@ const styles = StyleSheet.create({
         opacity: 0.7,
     },
     requestEmailText: {color: color_pallete.blue},
+    actionsContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
 });
 
 export default RequestsList;
