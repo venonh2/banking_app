@@ -1,11 +1,20 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import CreditCard from '../../components/CreditCard';
 
 const Card: React.FC = () => {
     return (
-        <View>
-            <Text>Account</Text>
+        <View style={styles.container}>
+            <CreditCard />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        padding: 16,
+    },
+});
+
 export default Card;
