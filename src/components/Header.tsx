@@ -14,8 +14,13 @@ const Header: React.FC = () => {
                 <MaterialCommunityIcons
                     name="format-list-bulleted-square"
                     size={24}
+                    color="#fff"
                 />
-                <MaterialCommunityIcons name="dots-vertical" size={24} />
+                <MaterialCommunityIcons
+                    name="dots-vertical"
+                    size={24}
+                    color="#fff"
+                />
             </View>
             <Text style={styles.welcomeText}> Bem vindo(a) novamente</Text>
             <View style={styles.userCard}>
@@ -40,7 +45,7 @@ const Header: React.FC = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: color_pallete.blue,
+        backgroundColor: color_pallete.blue_dark,
         height: moderateScale(168),
         borderBottomEndRadius: 48,
         borderBottomStartRadius: 48,
@@ -65,7 +70,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
 
-    welcomeText: {fontWeight: '700'},
+    welcomeText: {fontWeight: '700', color: '#fff'},
 
     userCard: {
         flexDirection: 'row',
@@ -99,11 +104,11 @@ const styles = StyleSheet.create({
 
     userDetails: {marginRight: 32},
 
-    username: {fontSize: 16},
+    username: {fontSize: 16, color: '#fff'},
 
-    balance: {fontSize: 22, fontWeight: '700'},
+    balance: {fontSize: 22, fontWeight: '700', color: '#fff'},
 
-    balanceDescription: {fontSize: 10},
+    balanceDescription: {fontSize: 10, color: '#fff'},
 });
 
 export default Header;

@@ -57,7 +57,9 @@ const LoanCard: React.FC = () => {
             {showDetails && (
                 <View style={styles.loanDetails}>
                     <Text style={styles.pendingText}>Pending</Text>
-                    <Text style={styles.pendingValueText}>R$ 345.92</Text>
+                    <Text selectable style={styles.pendingValueText}>
+                        R$ 345.92
+                    </Text>
                 </View>
             )}
         </React.Fragment>

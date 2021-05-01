@@ -17,7 +17,7 @@ const App = () => {
         <SafeAreaView style={styles.container}>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-                backgroundColor={color_pallete.blue}
+                backgroundColor={color_pallete.blue_dark}
             />
             <Routes />
         </SafeAreaView>

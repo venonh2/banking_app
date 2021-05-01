@@ -1,22 +1,31 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import sizes from '../config/sizes';
 
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import color_pallete from '../config/color_pallete';
 import LoanCard from './loanCard';
+import Topup from './Topup';
+
+import ReportCard from './ReportCard';
+import ActionSheet from 'react-native-actions-sheet';
+import RequestsList from './RequestsList';
 
 const Body: React.FC = () => {
+    const actionSheetRef: React.RefObject<ActionSheet> = useRef<ActionSheet>(
+        null,
+    );
+
     return (
         <View style={styles.container}>
             <View style={styles.activitiesContainer}>
                 <Text style={styles.activitiesTitle}>Activities</Text>
-
                 <LoanCard />
+                <Topup />
             </View>
             <View style={styles.reportContainer}>
                 <Text style={styles.reportTitle}>Monthly Report</Text>
+                <ReportCard onPress={() => actionSheetRef.current?.show()} />
             </View>
+            <RequestsList actionSheetRef={actionSheetRef} />
         </View>
     );
 };
