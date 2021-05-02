@@ -81,8 +81,15 @@ const TopTab = createMaterialTopTabNavigator();
 
 function TopTabs() {
     return (
-        <TopTab.Navigator tabBarOptions={{labelStyle: {fontSize: 12}}}>
-            <TopTab.Screen name="Cards" component={Cards} />
+        <TopTab.Navigator
+            tabBarOptions={{
+                labelStyle: {fontSize: 11, fontFamily: 'Poppins-Bold'},
+            }}>
+            <TopTab.Screen
+                name="Cards"
+                options={{tabBarLabel: 'My Cards'}}
+                component={Cards}
+            />
             <TopTab.Screen name="Deposits" component={Deposits} />
             <TopTab.Screen name="Transactions" component={Transactions} />
         </TopTab.Navigator>
