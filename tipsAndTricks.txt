@@ -1,0 +1,2 @@
+# if u and to update interface after removing a item from a list, u need to rebuild the state,
+a just setState with one item less, wont reflect it in screen,  u need to rebuild the object using a filter for example
