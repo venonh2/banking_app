@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         borderRadius: 16,
 
         borderWidth: 2,
-        borderColor: color_pallete.orange_dark,
+        borderColor: color_pallete.orange,
     },
 
     loanText: {

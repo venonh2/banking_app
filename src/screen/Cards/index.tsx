@@ -16,10 +16,10 @@ const cards: Card[] = [
 ];
 
 const payments = [
-    {title: 'Shopping', date: '20. june 2022', time: '2:20'},
-    {title: 'Shop', date: '20. june 2022', time: '2:20'},
-    {title: 'Shop', date: '20. june 2022', time: '2:20'},
-    {title: 'Shopping', date: '20. june 2022', time: '2:20'},
+    {title: 'Shopping', date: '20. june 2022', time: '16:12'},
+    {title: 'Pharmacy', date: '22. june 2022', time: '12:34'},
+    {title: 'Grocery', date: '24. june 2022', time: '18:27'},
+    {title: 'Pharmacy', date: '26. june 2022', time: '12:45'},
 ];
 
 const shadowColor = {
@@ -39,26 +39,21 @@ const Cards: React.FC = () => {
     const [cardsList, setCardsList] = useState(cards);
     const [selectedCardIndex, setSelectedCard] = useState(0);
 
+    // change color of selected payment card
     const changeSelectedCardStyle = (index: number) => {
         if (index === selectedCardIndex) {
             return shadowColor;
         }
     };
 
-    const changeCreditCardInFocus = () => {
-        /*  const onPressDeleteWordButton = index => {
-            if (wordsetObject.words.length) {
-                setWordsetObj(modifiedObj => {
-                    return {
-                        ...modifiedObj,
-                        words: modifiedObj.words.filter(
-                            (pr, ind) => ind !== index,
-                        ),,
-                    };;
-                });
-            }
-        }; */
-        console.log('not implemented yet');
+    // change card how is showed at the end of the list
+    const changeCreditCardInFocus = (card_index: number) => {
+        if (card_index === cardsList.length - 1 || !cardsList.length) {
+            return;
+        }
+        const newList = cardsList.filter((_, index) => index !== card_index);
+        newList.push(cardsList[card_index]);
+        setCardsList(newList);
     };
 
     return (
@@ -70,7 +65,7 @@ const Cards: React.FC = () => {
                             key={index}
                             index={index}
                             card={card}
-                            onPress={() => changeCreditCardInFocus()}
+                            onPress={() => changeCreditCardInFocus(index)}
                         />
                     );
                 })}
@@ -81,7 +76,7 @@ const Cards: React.FC = () => {
                     horizontal
                     showsHorizontalScrollIndicator={false}
                     contentContainerStyle={styles.paymentList}>
-                    {payments.map((payment, index) => {
+                    {payments.map(({date, time, title}, index) => {
                         return (
                             <PaymentDetailCard
                                 key={index}
@@ -91,9 +86,9 @@ const Cards: React.FC = () => {
                                 }}
                                 onPress={() => setSelectedCard(index)}
                                 data={{
-                                    title: 'Shopping',
-                                    date: '20. june 2022',
-                                    time: '2:20',
+                                    title: title,
+                                    date: date,
+                                    time: time,
                                 }}
                                 icon={
                                     <MaterialCommunityIcons

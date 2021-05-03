@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
@@ -14,6 +14,7 @@ import Transactions from '../screen/Transactions';
 // icons
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import color_pallete from '../config/color_pallete';
+import {View} from 'react-native';
 
 const selectTabIcon = (name: string) => {
     switch (name) {
@@ -33,9 +34,9 @@ const bottom_tab_style = {
     showLabel: false,
     //keyboardHidesTabBar: true,
     style: {
-        backgroundColor: 'grey',
         borderTopLeftRadius: 16,
         borderTopRightRadius: 16,
+        borderTopColor: '#fff',
     },
     activeTintColor: '#fff',
     adaptive: true,
@@ -45,13 +46,18 @@ const bottom_tab_style = {
 };
 
 function Routes() {
+    const [selectedTab, setSelectedTab] = useState('');
+
     return (
         <NavigationContainer>
             <BottomTab.Navigator
                 screenOptions={({route}) => ({
                     tabBarIcon: () => {
                         let icon_name = selectTabIcon(route.name);
-                        let icon_color = color_pallete.blue_dark;
+                        let icon_color =
+                            selectedTab !== route.name
+                                ? color_pallete.blue_dark
+                                : '#FF9800';
                         return (
                             <MaterialCommunityIcons
                                 name={icon_name}
@@ -68,9 +74,24 @@ function Routes() {
                     options={{
                         unmountOnBlur: true,
                     }}
+                    listeners={{
+                        tabPress: () => setSelectedTab('Home'),
+                    }}
                 />
-                <BottomTab.Screen name="Cards" component={TopTabs} />
-                <BottomTab.Screen name="New" component={NewCard} />
+                <BottomTab.Screen
+                    name="Cards"
+                    component={TopTabs}
+                    listeners={{
+                        tabPress: () => setSelectedTab('Cards'),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="New"
+                    component={NewCard}
+                    listeners={{
+                        tabPress: () => setSelectedTab('New'),
+                    }}
+                />
             </BottomTab.Navigator>
         </NavigationContainer>
     );

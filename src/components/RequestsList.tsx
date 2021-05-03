@@ -6,6 +6,7 @@ import {
     ScrollView,
     StyleSheet,
     Text,
+    TouchableOpacity,
     View,
 } from 'react-native';
 import ActionSheet from 'react-native-actions-sheet';
@@ -73,15 +74,22 @@ const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
     //if the user refuse to accept the request remove it from the list
 
     const [requestsList, setRequestsList] = useState<Request[]>(requests);
-    const removeFromList = useCallback(
-        (selected_email: string) => {
-            const requestIndex = requestsList.findIndex(
-                ({email}) => selected_email === email,
-            );
-            if (requestIndex !== -1) {
-                requestsList.splice(requestIndex, 1);
-                setRequestsList(requestsList);
+
+    // like the name says, remove request from list, like if user had accepted it
+    const removeRequestFromList = useCallback(
+        (request_index: number) => {
+            if (
+                request_index === requestsList.length - 1 ||
+                !requestsList.length
+            ) {
+                return;
             }
+
+            const newList = requestsList.filter(
+                (_, index) => index !== request_index,
+            );
+
+            setRequestsList(newList);
         },
         [requestsList],
     );
@@ -98,7 +106,10 @@ const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
                 <ScrollView showsVerticalScrollIndicator={false}>
                     {requestsList.map(({image, name, email}, index) => {
                         return (
-                            <View key={index} style={styles.requestCard}>
+                            <TouchableOpacity
+                                key={index}
+                                activeOpacity={0.6}
+                                style={styles.requestCard}>
                                 <Image
                                     source={image}
                                     style={styles.requestsImage}
@@ -119,11 +130,13 @@ const RequestsList: React.FC<Props> = ({actionSheetRef}) => {
                                     <MaterialCommunityIcons
                                         name="plus-circle-outline"
                                         size={32}
-                                        color="green"
-                                        onPress={() => removeFromList(email)}
+                                        color={color_pallete.grey_light}
+                                        onPress={() =>
+                                            removeRequestFromList(index)
+                                        }
                                     />
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         );
                     })}
                 </ScrollView>
@@ -138,12 +151,11 @@ const styles = StyleSheet.create({
     requestCard: {
         flex: 1,
         flexDirection: 'row',
+        marginBottom: 4,
 
-        marginBottom: 2,
-
+        backgroundColor: '#fafafa',
         padding: 4,
 
-        borderWidth: 0.6,
         borderRadius: 8,
     },
 

@@ -22,7 +22,7 @@ const Header: React.FC = () => {
                     color="#fff"
                 />
             </View>
-            <Text style={styles.welcomeText}> Bem vindo(a) novamente</Text>
+            <Text style={styles.welcomeText}> Welcome back</Text>
             <View style={styles.userCard}>
                 <View style={styles.userImageCard}>
                     <Image
