@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\banking_api.csproj": {}
+    "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api.csproj": {}
   },
   "projects": {
-    "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\banking_api.csproj": {
+    "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\banking_api.csproj",
+        "projectUniqueName": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api.csproj",
         "projectName": "banking_api",
-        "projectPath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\banking_api.csproj",
+        "projectPath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api.csproj",
         "packagesPath": "C:\\Users\\T-Gamer\\.nuget\\packages\\",
-        "outputPath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\obj\\",
+        "outputPath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\T-Gamer\\AppData\\Roaming\\NuGet\\NuGet.Config",

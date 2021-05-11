@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4P5XV44tcqWvwaapfZwI3kseBEg7r0MDxWORghQ4hwlp0yCeunxl8RzUYHE7wxOGSg7izTuNGWRpkTxqdD4Jbg==",
+  "dgSpecHash": "qqXwZf5xzkaBVh+al1Xt4Dac3F7FqvsA+rweHrH6EqELiwSosU2+hPbio95SlIa/1jIqTONkC6Wk9IYaWMWNUw==",
   "success": true,
-  "projectFilePath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api\\banking_api.csproj",
+  "projectFilePath": "D:\\bibliotecas\\documentos\\Projetos\\banking_ui_clone\\backend\\banking_api\\banking_api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\T-Gamer\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.1\\microsoft.aspnetcore.authentication.jwtbearer.5.0.1.nupkg.sha512",
     "C:\\Users\\T-Gamer\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\5.0.1\\microsoft.aspnetcore.authentication.openidconnect.5.0.1.nupkg.sha512",
