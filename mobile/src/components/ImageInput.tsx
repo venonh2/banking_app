@@ -95,6 +95,7 @@ const ImageInput: React.ForwardRefRenderFunction<InputRef, InputProps> = (
                 }} */
                 style={styles.input}
                 placeholderTextColor={color_pallete.grey_light}
+                selectionColor="#111"
                 hitSlop={{top: 40, right: 40, bottom: 40, left: 40}}
                 {...rest}
             />

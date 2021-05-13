@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
     Image,
     SafeAreaView,
@@ -6,6 +6,7 @@ import {
     Text,
     TouchableOpacity,
     View,
+    TextInput,
 } from 'react-native';
 import color_pallete from '../../config/color_pallete';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -17,6 +18,7 @@ const Background = require('../../assets/background.png');
 
 const Login: React.FC = () => {
     const [keyboard, setKeyboard] = useState(false);
+    const passwordInputRef = useRef<TextInput>(null);
 
     function changeTextColor() {
         if (keyboard) {
@@ -46,12 +48,19 @@ const Login: React.FC = () => {
                         name="login"
                         placeholder="Login"
                         returnKeyType="next"
+                        onSubmitEditing={() =>
+                            passwordInputRef.current?.focus()
+                        }
                     />
                     <ImageInput
+                        ref={passwordInputRef}
                         name="password"
                         icon="lock"
                         placeholder="Password"
                         returnKeyType="next"
+                        keyboardAppearance="dark"
+                        keyboardType="email-address"
+                        secureTextEntry={true}
                     />
                 </View>
             </KeyboardAwareScrollView>
