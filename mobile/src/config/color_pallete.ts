@@ -5,4 +5,6 @@ export default {
     grey_light: '#cfd8dc',
     orange: '#ff9800',
     orange_dark: '#c66900',
+    purple_dark: '#1E2BA4',
+    white: '#fff',
 };
