@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
     Image,
     SafeAreaView,
@@ -13,15 +13,28 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import ImageInput from '../../components/ImageInput';
 import {moderateScale} from 'react-native-size-matters';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import * as LocalAuthentication from 'expo-local-authentication';
 
 const Background = require('../../assets/background.png');
 
 const Login: React.FC = () => {
-    const [keyboard, setKeyboard] = useState(false);
+    const [inputFocus, setInputFocus] = useState({one: false, two: false});
     const passwordInputRef = useRef<TextInput>(null);
 
+    async function checkers() {
+        console.log('a', await LocalAuthentication.hasHardwareAsync());
+        console.log('a', await LocalAuthentication.authenticateAsync());
+    }
+
+    useEffect(() => {
+        checkers();
+    }, []);
+
     function changeTextColor() {
-        if (keyboard) {
+        if (inputFocus.one) {
+            return '#212121';
+        }
+        if (inputFocus.two) {
             return '#111';
         }
         return '#fff';
@@ -34,8 +47,12 @@ const Login: React.FC = () => {
             </Text>
             <KeyboardAwareScrollView
                 style={styles.container}
-                onKeyboardDidShow={() => setKeyboard(true)}
-                onKeyboardDidHide={() => setKeyboard(false)}>
+                showsVerticalScrollIndicator={false}
+                decelerationRate="normal"
+                //keyboardShouldPersistTaps="always"
+                onKeyboardDidHide={() =>
+                    setInputFocus({one: false, two: false})
+                }>
                 <Image source={Background} style={styles.image} />
                 <TouchableOpacity
                     style={styles.loginButton}
@@ -48,6 +65,7 @@ const Login: React.FC = () => {
                         name="login"
                         placeholder="Login"
                         returnKeyType="next"
+                        onFocus={() => setInputFocus({one: true, two: false})}
                         onSubmitEditing={() =>
                             passwordInputRef.current?.focus()
                         }
@@ -60,6 +78,7 @@ const Login: React.FC = () => {
                         returnKeyType="next"
                         keyboardAppearance="dark"
                         keyboardType="email-address"
+                        onFocus={() => setInputFocus({one: false, two: true})}
                         secureTextEntry={true}
                     />
                 </View>

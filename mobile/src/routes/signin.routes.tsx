@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
-
+import {TransitionPresets} from '@react-navigation/stack';
 // screens
 import Home from './signed.routes'; // within this components we have the aplication tabs
 import Login from '../screen/Login';
@@ -25,7 +25,10 @@ const Authentication = () => {
                 <Stack.Screen
                     name="Login"
                     component={Login}
-                    options={{headerShown: false}}
+                    options={{
+                        headerShown: false,
+                        ...TransitionPresets.SlideFromRightIOS,
+                    }}
                 />
             </React.Fragment>
         );
